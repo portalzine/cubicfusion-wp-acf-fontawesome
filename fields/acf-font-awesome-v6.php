@@ -11,6 +11,7 @@ if ( ! class_exists( 'acf_field_font_awesome' ) ) :
 	{
 		private $icons = false;
 		private $version;
+		public $show_in_rest = false; 
 
 		public function __construct( $settings )
 		{
@@ -305,11 +306,13 @@ if ( ! class_exists( 'acf_field_font_awesome' ) ) :
 				wp_enqueue_style( 'acffa_font-awesome', $fa_url, [], $latest_version );
 			}
 		}
-	
+		public function format_value_for_rest( $value, $post_id, array $field ) {
+			return $this->format_value( $value, $post_id, $field );
+		}
 		public function format_value( $value, $post_id, $field )
 		{
 			if ( 'null' == $value ) {
-				return false;
+				return "";
 			}
 
 			if ( empty( $value ) ) {
@@ -509,6 +512,8 @@ if ( ! class_exists( 'acf_field_font_awesome' ) ) :
 
 	}
 
-	new acf_field_font_awesome( $this->settings );
+	$fa = new acf_field_font_awesome( $this->settings );
+    acf_register_field_type( $fa );
+
 
 endif;
