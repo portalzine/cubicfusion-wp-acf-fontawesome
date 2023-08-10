@@ -69,7 +69,7 @@ class ACFFA_Admin
 
 	public function enqueue_acf_select2( $hook )
 	{
-		$acf = sanitize_title( __( 'ACF', 'acf' ) );
+			$acf = sanitize_title( __( 'ACF', 'acf' ) );
 		$custom_fields = sanitize_title( __( 'Custom Fields', 'acf' ) );
 		if ( $custom_fields . '_page_fontawesome-settings' != $hook &&
 			 $acf . '_page_fontawesome-settings' != $hook ) {
